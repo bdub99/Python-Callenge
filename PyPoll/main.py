@@ -25,8 +25,8 @@ Diana_DeGette = 0
 Raymon_Anthony_Doane = 0
 
 Candidates = []
-can_votes= []
-percentage = []
+Percentage = []
+Can_Vote = []
 
 with open (csvpath, encoding='utf') as csvfile:
 
@@ -36,28 +36,46 @@ with open (csvpath, encoding='utf') as csvfile:
 
     for row in csvreader:
     # The total number of votes cast
-        total_votes +=1
+        total_votes = total_votes + 1
     # * A complete list of candidates who received votes
         if row[2] == "Charles Casper Stockham":
-            Charles_Casper_Stockham +=1
+            Charles_Casper_Stockham = Charles_Casper_Stockham + 1
         elif row[2] == "Diana DeGette":
-            Diana_DeGette +=1
+            Diana_DeGette = Diana_DeGette + 1
         elif row[2] == "Raymon Anthony Doane":
-            Raymon_Anthony_Doane +=1
+            Raymon_Anthony_Doane = Raymon_Anthony_Doane + 1
 
-# Create list of candidates and voting results
+# Create list of candidates, voting results, and percentages
 Candidates = ["Charles Casper Stockham", "Diana DeGette", "Raymon Anthony Doane"]
-can_votes = [Charles_Casper_Stockham, Diana_DeGette, Raymon_Anthony_Doane]
-percentage = [(Charles_Casper_Stockham / total_votes) * 100, (Diana_DeGette / total_votes) * 100, (Raymon_Anthony_Doane / total_votes) * 100]
-percentage.append(str(percentage) + "%")
+Can_Votes = [Charles_Casper_Stockham, Diana_DeGette, Raymon_Anthony_Doane]
+Percentage = [(Charles_Casper_Stockham / total_votes) * 100, (Diana_DeGette / total_votes) * 100, (Raymon_Anthony_Doane / total_votes) * 100]
 
-# zip lists together to find winner
-Results = zip(Candidates, percentage, can_votes)
+# zip lists together
+Results = zip(Candidates, Percentage, Can_Votes)
 
 
 for election_results in Results:
-        print("total votes: [total_votes]")
-        print(election_results)
+        print(f'Total Votes: {total_votes}')
+        print(f'{election_results}')
+        
+
+
+        
+
+
+# output_file = os.path.join("election_data.csv")
+# # open the output file
+# with open(output_file, "w") as datafile:
+#     writer = csv.writer(datafile)
+
+#     # Write the header row
+#     writer.writerow(["Candidates", "Percentage", "CandidateVotes"])
+
+#     # Write in zipped rows
+#     writer.writerows(election_results)
+
+
+
         
 
 
