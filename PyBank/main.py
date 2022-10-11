@@ -1,22 +1,10 @@
-# In this challenge, you are tasked with creating a Python script to analyze the financial 
-# records of your company. You will give a set of financial data called 
-# [budget_data.csv](PyBank/Resources/budget_data.csv). 
-# The dataset is composed of two columns: "Date" and "Profit/Losses". 
-# (Thankfully, your company has rather lax standards for accounting, so the records are simple.)
-
 import os
 import csv
 
 csvpath = os.path.join("Resources", "budget_data.csv")
 # set variables
-total_months = 0
-total_PL = 0
-average_change = 0
-profit_inc = []
-profit_dec = []
-profit = 0
-loses = 0 
-
+months =[]
+profit_loss = []
 
 with open(csvpath) as csvfile:
     
@@ -25,40 +13,32 @@ with open(csvpath) as csvfile:
     csv_header = next(csvreader)
 
     for row in csvreader:
-        # The total number of months included in the dataset
         
-        total_months = total_months + 1
+        months.append(row[0])
         
-        # * The net total amount of "Profit/Losses" over the entire period
-        if (int(row[1]) > 0):
-            profit
-        else: 
-            (int(row[1]) < 0)
-            loses 
-        total_PL = profit - loses
+        profit_loss.append(float(row[1]))
 
-        # * The changes in "Profit/Losses" over the entire period, and then the average of those changes
-        def average(changes):
-            length = len(changes) 
-            average_change = 0.0
-            for change in changes:
-                average_change += changes
-            return average_change / length
+total_months = (len(months))
 
-        # * The greatest increase in profits (date and amount) over the entire period
+net = sum(profit_loss)
 
-        profit_inc = [max(row(1))]
+average_change = net/total_months
 
-        # * The greatest decrease in profits (date and amount) over the entire period
-        
-        profit_dec = [min(row(1))]
+max_profit = max(profit_loss)
 
+index_max = profit_loss.index(max_profit)
+max_month = months[index_max]
 
-print(total_months)
-print(str(total_PL))
-print(str(average))
-print(f"{str(profit_inc)}")
-print(f"{str(profit_dec)}")
+min_profit = min(profit_loss)
+
+index_min = profit_loss.index(min_profit)
+min_month = months[index_min]
+
+print(f"Total Month: {total_months}")
+print(f"Total: {net}")
+print(f"Average Change; {average_change}")
+print(f"Greatest Increase ; {max_month} {max_profit}")
+print(f"Greatest Decrease : {min_month} {min_profit}")
 
 
 
